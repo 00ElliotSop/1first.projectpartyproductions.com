@@ -1,123 +1,93 @@
-import React from 'react';
+    { src: '/20250804_192508408.jpg', description: 'Prom night setup with glamorous backdrop and elegant lighting' },
+    { src: '/DSC_0161.JPG', description: 'Family reunion with multi-generational fun and classic props' }
+import React, { useState } from 'react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const AboutUs = () => {
-  const teamMembers = [
-    {
-      name: "Sasha R",
-      image: "/20250804_182858278 (2).jpg",
-      quote: "WE BRING THE ENERGY, HANDLE EVERY DETAIL, AND CRAFT UNFORGETTABLE MOMENTS. PROFESSIONALLY, PASSIONATELY, AND ALWAYS WITH A SMILE",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    },
-    {
-      name: "Vick L",
-      image: "/20250804_182858278 (2).jpg", 
-      quote: "CREATING MEMORABLE EXPERIENCES THROUGH ATTENTION TO DETAIL AND GENUINE PASSION FOR EVERY EVENT WE SERVE",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    },
-    {
-      name: "Prince A",
-      image: "/20250804_182858278 (2).jpg",
-      quote: "BRINGING CREATIVITY AND TECHNICAL EXPERTISE TO CAPTURE EVERY PERFECT MOMENT WITH STYLE AND PRECISION",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    },
-    {
-      name: "Matthew L",
-      image: "/20250804_182858278 (2).jpg",
-      quote: "ENSURING EVERY PIECE OF EQUIPMENT RUNS FLAWLESSLY SO YOUR EVENT IS NOTHING SHORT OF SPECTACULAR",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    },
-    {
-      name: "Victoria G",
-      image: "/20250804_182858278 (2).jpg",
-      quote: "MAKING EVERY CLIENT FEEL VALUED AND ENSURING THEIR VISION COMES TO LIFE WITH SEAMLESS COORDINATION",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    },
-    {
-      name: "Sarah R",
-      image: "/20250804_182858278 (2).jpg",
-      quote: "CAPTURING AND SHARING THE MAGIC OF EVERY EVENT TO INSPIRE OTHERS AND SPREAD THE JOY OF CELEBRATION",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    },
-    {
-      name: "Keval N",
-      image: "/20250804_182858278 (2).jpg",
-      quote: "PROVIDING RELIABLE SUPPORT AND TECHNICAL SKILLS TO ENSURE EVERY EVENT RUNS SMOOTHLY FROM START TO FINISH",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    },
-    {
-      name: "Nivake S",
-      image: "/20250804_182858278 (2).jpg",
-      quote: "BRINGING ENTHUSIASM AND ORGANIZATIONAL EXCELLENCE TO CREATE THE PERFECT ATMOSPHERE FOR UNFORGETTABLE PHOTOS",
-      description: "At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!"
-    }
-  ];
+const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  return (
+  const galleryImages = [
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="relative h-screen">
-        <link rel="preload" as="image" href="/20250804_182858278 (2).jpg" fetchpriority="high" />
+      <section className="relative h-96">
         <img
-          src="/20250804_182858278 (2).jpg"
-          alt="About Us - Project Party Productions"
+          src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Gallery Hero"
           className="w-full h-full object-cover"
-          fetchpriority="high"
           loading="eager"
           decoding="sync"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-40" />
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="absolute inset-0 flex items-center justify-center text-center text-white">
           <div className="max-w-4xl px-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">About Us</h1>
-            <h2 className="text-3xl md:text-4xl font-semibold">Project Party Productions</h2>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Members Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">Team Members</h2>
-          
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Our passionate team of owner-operators brings years of experience and boundless energy to every event. 
-              We don't just provide services – we create experiences that leave lasting impressions on you and your guests.
-              Each member of our team is dedicated to making your celebration extraordinary.
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">GALLERY</h1>
+            <p className="text-xl md:text-2xl">
+              Explore our collection of memorable moments and stunning setups
             </p>
           </div>
-
-          <div className="space-y-20">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-gray-50 rounded-2xl p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                  <div className="flex-shrink-0 lg:w-[65%]">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-96 object-cover rounded-2xl shadow-lg"
-                      fetchpriority="high"
-                      loading="eager"
-                      decoding="sync"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-4xl font-bold text-gray-800 mb-6 text-left">{member.name}</h3>
-                    <p className="text-[#B5A99A] text-xl font-semibold mb-6 leading-tight text-left">
-                      {member.quote}
-                    </p>
-                    <p className="text-gray-600 leading-relaxed text-left">
-                      {member.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
-    </div>
-  );
-};
 
-export default AboutUs;
+      {/* Gallery Grid */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Preload first few gallery images */}
+          <link rel="preload" as="image" href={galleryImages[0].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[1].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[2].src} fetchpriority="high" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages.map((image, index) => (
+              <div
+                key={index}
+                className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
+                onClick={() => openModal(index)}
+              >
+                <div className="relative overflow-hidden rounded-2xl shadow-lg">
+                  <img
+                    src={image.src}
+                    alt={`Gallery ${index + 1}`}
+                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+    { src: '/20250804_204800341.jpg', description: '360 Photobooth in action at a wedding reception with guests enjoying the experience' },
+                    fetchpriority={index < 6 ? "high" : "auto"}
+    { src: '/20250804_204445724.jpg', description: 'Mobile photobooth setup with professional lighting and backdrop at corporate event' },
+            </button>
+    { src: '/main.JPG', description: 'Birthday party celebration with colorful props and happy guests' },
+            <button
+    { src: '/20250804_1829240671-ezgif.com-speed.gif', description: 'Elegant wedding setup with white flower wall backdrop and professional lighting' },
+              onClick={nextImage}
+    { src: '/DSC_0125.JPG', description: 'Corporate gala event featuring our premium photobooth package' },
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all"
+    { src: '/DSC_0381 2.JPG', description: 'Outdoor wedding ceremony with portable power station and wireless setup' },
+            >
+    { src: '/DSC_1148.JPG', description: 'Anniversary celebration with gold sequin backdrop and romantic lighting' },
+              <ChevronRight size={24} />
+    { src: '/360.jpg', description: 'Graduation party with fun props and instant photo printing' },
+            </button>
+    { src: '/360-1.jpg', description: 'Holiday party setup with seasonal decorations and themed props' },
+
+    { src: '/20250804_182858278 (2).jpg', description: 'Baby shower event with pastel backdrop and delicate lighting' },
+            {/* Image Description */}
+    { src: '/20250804_192508408.jpg', description: 'Corporate team building event with interactive photobooth experience' },
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-4 rounded-lg max-w-md text-center">
+    { src: '/DSC_0161.JPG', description: 'Sweet 16 party with vibrant lighting and trendy backdrop' },
+              <p className="text-sm mb-2">{galleryImages[selectedImage].description}</p>
+    { src: '/DSC_0376 2.JPG', description: 'Wedding reception with red carpet entrance and stanchions' },
+              <p className="text-xs opacity-75">{selectedImage + 1} / {galleryImages.length}</p>
+    { src: '/main.JPG', description: 'Charity gala featuring our premium lighting package' },
+            </div>
+    { src: '/20250804_204800341.jpg', description: 'Engagement party with romantic floral backdrop and soft lighting' },
+          </div>
+    { src: '/20250804_204445724.jpg', description: 'Corporate product launch with branded backdrop and professional setup' },
+        </div>
+    { src: '/DSC_0125.JPG', description: 'Quinceañera celebration with elegant gold and pink theme' },
+      )}
+    { src: '/DSC_0381 2.JPG', description: 'Retirement party with classic backdrop and timeless props' },
+    </div>
+    { src: '/DSC_1148.JPG', description: 'New Year\'s Eve party with glittery backdrop and festive props' },
+  );
+    { src: '/360.jpg', description: 'Bridal shower with white and gold theme and delicate flowers' },
+};
+    { src: '/360-1.jpg', description: 'Bar Mitzvah celebration with traditional and modern elements' },
+
+    { src: '/20250804_182858278 (2).jpg', description: 'Company anniversary event with professional branding and setup' },
+export default Gallery;

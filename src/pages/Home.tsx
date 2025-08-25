@@ -1,358 +1,133 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const Home = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  const heroImages = [
-    'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  const galleryImages = [
+    { src: '/20250804_210332810.jpg', description: 'Behind the scenes of our professional event service' },
+    { src: '/20250804_210043845.jpg', description: 'Event highlights showcasing memorable guest interactions' },
+    { src: '/20250804_205655968.jpg', description: 'Professional photography capturing special moments at the event' },
+    { src: '/20250804_214331446.jpg', description: 'Behind the scenes of our photobooth experience in action' },
+    { src: '/DSC_0376 2.JPG', description: 'Professional event setup showcasing our premium service quality' },
+    { src: '/20250804_213017940.jpg', description: 'Event highlights capturing memorable moments and guest interactions' }
   ];
 
-  const testimonials = [
-    {
-      name: "Samantha D.",
-      location: "Toronto, ON",
-      rating: 5,
-      text: "Project Party Productions made our event unforgettable. The team was punctual, super friendly, and brought a level of professionalism that put us at ease. Communication was clear from the start and the setup looked amazing. Our guests had a blast at the 360 booth and couldn't stop talking about it."
-    },
-    {
-      name: "Emily R.",
-      location: "Toronto, ON",
-      rating: 5,
-      text: "We hired Project Party Productions for a corporate event and they knocked it out of the park. From the booking process to the execution, everything was smooth and stress free. Their team was enthusiastic and ensured all our guests had fun. We'll definitely be using them again."
-    },
-    {
-      name: "Ahmed K.",
-      location: "Mississauga, ON",
-      rating: 5,
-      text: "I absolutely loved working with Project Party Productions. They were organized, responsive, and incredibly fun to work with. The booth was a huge hit and their team kept the energy high the whole night. It added a special touch to our wedding reception."
-    },
-    {
-      name: "Jessica M.",
-      location: "Vaughan, ON",
-      rating: 5,
-      text: "What impressed me most was how well they handled everything from start to finish. Communication was fast and efficient, and they answered all our questions without hesitation. The team showed up early, looked professional, and brought a fun vibe that elevated our party."
-    },
-    {
-      name: "Michael T.",
-      location: "Brampton, ON",
-      rating: 5,
-      text: "The level of service we received from Project Party Productions was top tier! They were easy to reach before the event and made sure every detail was covered. The booth experience itself was interactive and fun. Our guests were lined up the entire time and the staff kept the mood upbeat and lively."
-    },
-    {
-      name: "Sarah L.",
-      location: "Oakville, ON",
-      rating: 5,
-      text: "We've worked with several vendors in the past, but none matched the professionalism and energy of Project Party Productions. Their team brought great energy and really cared about making the experience special for everyone. The communication leading up to the event was excellent."
-    },
-    {
-      name: "David P.",
-      location: "Richmond Hill, ON",
-      rating: 5,
-      text: "Hiring Project Party Productions was one of the best decisions we made for our celebration. The 360 video booth was a showstopper and the team running it was full of personality and professionalism. They were responsive, punctual, and handled everything seamlessly."
-    },
-    {
-      name: "Lisa K.",
-      location: "Markham, ON",
-      rating: 5,
-      text: "You can tell Project Party Productions takes pride in what they do. From the design of their booth to how they interacted with guests, everything felt intentional and well thought out. Their team was upbeat, organized, and made everyone feel comfortable in front of the camera."
-    },
-    {
-      name: "Robert S.",
-      location: "Toronto, ON",
-      rating: 5,
-      text: "I'm still hearing compliments about the booth from our guests. Project Party Productions made the whole experience smooth and enjoyable. They communicated every step of the way and arrived ready to deliver fun. Their team helped hype people up and it really made our event feel next level."
-    },
-    {
-      name: "Amanda W.",
-      location: "Etobicoke, ON",
-      rating: 5,
-      text: "Professional, fun, and reliable, that's how I would describe Project Party Productions! Their staff was warm and engaging, making sure every guest felt like a star. I appreciated how easy they were to work with before the event and how focused they were during it. Fantastic service all around."
+  const openModal = (index: number) => {
+    setSelectedImage(index);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
+  const nextImage = () => {
+    if (selectedImage !== null) {
+      setSelectedImage((selectedImage + 1) % galleryImages.length);
     }
-  ];
+  };
 
-  const whyChooseUsFeatures = [
-    {
-      image: 'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
-      title: 'Project Party Productions brings a professional studio ambience to your event, all of our equipment is fully mobile, no need to connect to any outlets!',
-      description: 'Professional lighting and high-quality equipment for stunning photos.'
-    },
-    {
-      image: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
-      title: 'High-Definition Images: Our photo booths deliver high-definition images, ensuring every smile and detail is captured in stunning clarity.',
-      description: 'Crystal clear photos that capture every moment perfectly.'
-    },
-    {
-      image: 'https://images.pexels.com/photos/1164473/pexels-photo-1164473.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
-      title: 'We offer a variety of backdrops to suit any taste, ensuring your photos are unique and memorable. (32+ Backdrops and also custom backdrops available)',
-      description: 'Choose from our extensive collection of beautiful backdrops.'
-    },
-    {
-      image: 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
-      title: 'Our modern, fun props will create hilarious photo opportunities and keep your guests entertained. (We offer props for different events, seasons, holidays, and custom props)',
-      description: 'Extensive prop collection to make your photos fun and memorable.'
-    },
-    {
-      image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
-      title: 'We are fully insured and incorporated and have a $2 million dollar insurance liability.',
-      description: 'Complete peace of mind with full professional insurance coverage.'
-    },
-    {
-      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
-      title: 'We will always have a minimum of 2 professional attendants. We provide excellent customer service and having a first-class experience is our top priority.',
-      description: 'Dedicated support team ensuring your event runs smoothly.'
+  const prevImage = () => {
+    if (selectedImage !== null) {
+      setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
     }
-  ];
-
-  // Auto-advance carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Auto-advance testimonials
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  };
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
   return (
     <div className="pt-24">
-      {/* Hero Section with Carousel */}
-      <section className="relative h-screen overflow-hidden">
-        <div className="relative w-full h-full">
-          {heroImages.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <img
-                src={image}
-                alt={`Hero ${index + 1}`}
-                className="w-full h-full object-cover"
-                loading="eager"
-                decoding="sync"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40" />
-            </div>
-          ))}
-          
-          {/* Hero Content */}
-          <div className="absolute inset-0 flex items-center justify-center text-center text-white z-10 px-2">
-            <div className="w-full max-w-4xl px-2">
-              <h1 className="font-bold mb-4 leading-tight" style={{ 
-                fontSize: 'clamp(1.9rem, 7.7vw, 5.8rem)',
-                wordWrap: 'break-word',
-                hyphens: 'auto'
-              }}>
-                PROJECT PARTY PRODUCTIONS
-              </h1>
-              <p className="mb-6 leading-tight px-1" style={{ 
-                fontSize: 'clamp(0.95rem, 3.8vw, 1.6rem)',
-                wordWrap: 'break-word'
-              }}>
-                Creating Unforgettable Moments with Professional Photobooth Services
-              </p>
-              <Link
-                to="/book-now"
-                className="bg-[#F7E7CE] text-black px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full font-semibold hover:bg-[#B5A99A] hover:text-white transition-all duration-300 inline-block"
-                style={{ fontSize: 'clamp(1.1rem, 3.2vw, 1.4rem)' }}
-              >
-                BOOK NOW
-              </Link>
-            </div>
-          </div>
-
-          {/* Carousel Controls */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all z-20"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all z-20"
-          >
-            <ChevronRight size={24} />
-          </button>
-
-          {/* Carousel Indicators */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-            {heroImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentSlide ? 'bg-white' : 'bg-white bg-opacity-50'
-                }`}
-              />
-            ))}
+      {/* Hero Section */}
+      <section className="relative h-96">
+        <img
+          src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Gallery Hero"
+          className="w-full h-full object-cover"
+          loading="eager"
+          decoding="sync"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="absolute inset-0 flex items-center justify-center text-center text-white">
+          <div className="max-w-4xl px-4">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">GALLERY</h1>
+            <p className="text-xl md:text-2xl">
+              Explore our collection of memorable moments and stunning setups
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Meet the Team Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Meet the Team"
-                className="w-full rounded-2xl shadow-lg"
-                loading="eager"
-                decoding="sync"
-              />
-            </div>
-            <div>
-              <h2 className="font-bold text-gray-800 mb-4 px-1" style={{ 
-                fontSize: 'clamp(1.6rem, 5.1vw, 3.2rem)',
-                lineHeight: '1.2'
-              }}>MEET THE TEAM</h2>
-              <p className="text-[#B5A99A] font-semibold mb-4 px-1" style={{ 
-                fontSize: 'clamp(1.1rem, 3.2vw, 1.6rem)',
-                lineHeight: '1.3'
-              }}>
-                WE BRING THE ENERGY, HANDLE EVERY DETAIL, AND CRAFT UNFORGETTABLE MOMENTS. PROFESSIONALLY, PASSIONATELY, AND ALWAYS WITH A SMILE
-              </p>
-              <p className="text-gray-600 mb-6 leading-relaxed px-1" style={{ 
-                fontSize: 'clamp(0.95rem, 2.6vw, 1.3rem)',
-                lineHeight: '1.4'
-              }}>
-                At Project Party Productions, we're not just a team—we're owner-operators who live and breathe events. We know what it takes to make a party unforgettable because we've been to enough events to know what works (and what doesn't). You'll never see us just standing around like mannequins—we bring the energy, entertainment, and interaction that keeps guests laughing, spinning, and snapping all night long. Our crew is here to cater to every request with a smile, ensuring your event is not only seamless but full of life and fun. Because at the end of the day, your celebration deserves more than just a photo booth—it deserves an experience!
-              </p>
-              <Link
-                to="/about-us"
-                className="bg-[#B5A99A] text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-full hover:bg-[#F7E7CE] hover:text-black transition-all duration-300 inline-block font-semibold"
-                style={{ fontSize: 'clamp(0.95rem, 2.6vw, 1.3rem)' }}
-              >
-                ABOUT US
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
+      {/* Gallery Grid */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4">
-          <h2 className="text-center text-gray-800 mb-8 sm:mb-12 md:mb-16 font-bold px-1" style={{ 
-            fontSize: 'clamp(1.6rem, 5.1vw, 3.2rem)',
-            lineHeight: '1.2'
-          }}>WHY CHOOSE US?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyChooseUsFeatures.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-6">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Preload first few gallery images */}
+          <link rel="preload" as="image" href={galleryImages[0].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[1].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[2].src} fetchpriority="high" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages.map((image, index) => (
+              <div
+                key={index}
+                className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
+                onClick={() => openModal(index)}
+              >
+                <div className="relative overflow-hidden rounded-2xl shadow-lg">
                   <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-2xl shadow-lg mx-auto"
-                    loading="eager"
-                    decoding="sync"
+                    src={image.src}
+                    alt={`Gallery ${index + 1}`}
+                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                    fetchpriority={index < 6 ? "high" : "auto"}
+                    loading={index < 6 ? "eager" : "lazy"}
+                    decoding={index < 6 ? "sync" : "async"}
                   />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300" />
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-2 sm:mb-4 leading-tight px-1" style={{ 
-                  fontSize: 'clamp(1.1rem, 3.2vw, 1.4rem)',
-                  lineHeight: '1.3'
-                }}>
-                  {feature.title}
-                </h3>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4">
-          <h2 className="font-bold text-center text-gray-800 mb-8 sm:mb-12 md:mb-16 px-1" style={{ 
-            fontSize: 'clamp(1.6rem, 5.1vw, 3.2rem)',
-            lineHeight: '1.2'
-          }}>TESTIMONIALS</h2>
-          <div className="relative max-w-4xl mx-auto">
-            <div className="bg-[#B5A99A] rounded-2xl p-4 sm:p-6 md:p-8 text-white min-h-[240px] sm:min-h-[280px] md:min-h-[300px] flex flex-col justify-center mx-2">
-              <div className="flex justify-center mb-3 sm:mb-4">
-                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                  <Star key={i} className="text-yellow-400 fill-current w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                ))}
-              </div>
-              <blockquote className="text-center mb-3 sm:mb-4 md:mb-6 leading-relaxed px-1 sm:px-2" style={{ 
-                fontSize: 'clamp(0.95rem, 3.2vw, 1.6rem)',
-                lineHeight: '1.4'
-              }}>
-                "{testimonials[currentTestimonial].text}"
-              </blockquote>
-              <div className="text-center">
-                <p className="text-[#F7E7CE] font-semibold px-1" style={{ 
-                  fontSize: 'clamp(0.95rem, 2.6vw, 1.4rem)',
-                  lineHeight: '1.3'
-                }}>
-                  {testimonials[currentTestimonial].name}, {testimonials[currentTestimonial].location}
-                </p>
-              </div>
-            </div>
-
-            {/* Testimonial Controls */}
+      {/* Modal */}
+      {selectedImage !== null && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-4xl max-h-full">
+            <img
+              src={galleryImages[selectedImage].src}
+              alt={`Gallery ${selectedImage + 1}`}
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+            
+            {/* Close Button */}
             <button
-              onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#F7E7CE] text-gray-900 p-3 rounded-full hover:bg-white transition-all shadow-lg"
+              onClick={closeModal}
+              className="absolute top-4 right-4 bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-3 rounded-full transition-all border-2 border-white shadow-lg"
             >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#F7E7CE] text-gray-900 p-3 rounded-full hover:bg-white transition-all shadow-lg"
-            >
-              <ChevronRight size={20} />
+              <X size={28} />
             </button>
 
-            {/* Testimonial Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentTestimonial ? 'bg-[#B5A99A]' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all"
+            >
+              <ChevronRight size={24} />
+            </button>
+
+            {/* Image Description */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-4 rounded-lg max-w-md text-center">
+              <p className="text-sm mb-2">{galleryImages[selectedImage].description}</p>
+              <p className="text-xs opacity-75">{selectedImage + 1} / {galleryImages.length}</p>
             </div>
           </div>
         </div>
-      </section>
+      )}
     </div>
   );
 };
 
-export default Home;
+export default Gallery;

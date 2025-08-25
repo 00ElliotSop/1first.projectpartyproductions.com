@@ -1,259 +1,36 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const Backdrops = () => {
+const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [selectedBackdrop, setSelectedBackdrop] = useState<number | null>(null);
 
-  const backdrops = [
-    { 
-      id: 1, 
-      name: 'White', 
-      image: 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 
-      category: 'Simple',
-      gallery: ['https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1']
-    },
-    { 
-      id: 2, 
-      name: 'White with Gold Lines', 
-      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 
-      category: 'Elegant',
-      gallery: ['https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1']
-    },
-    { 
-      id: 3, 
-      name: 'Pink with Gold Confetti', 
-      image: 'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 
-      category: 'Elegant',
-      gallery: ['https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1']
-    },
-    { 
-      id: 4, 
-      name: 'Silver Sprinkling', 
-      image: 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 
-      category: 'Sequins',
-      gallery: ['https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1']
-    },
-    { 
-      id: 5, 
-      name: 'Silver Sequence', 
-      image: 'https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 
-      category: 'Sequins',
-      gallery: ['https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1', 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1']
-    },
-    { 
-      id: 6, 
-      name: 'Champagne Sequence', 
-      image: '/360-1.jpg', 
-      category: 'Sequins',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 7, 
-      name: 'Gold Sprinkling', 
-      image: '/360.jpg', 
-      category: 'Sequins',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 8, 
-      name: 'Black Gold Lines', 
-      image: '/360-1.jpg', 
-      category: 'Elegant',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 9, 
-      name: 'Black', 
-      image: '/360.jpg', 
-      category: 'Simple',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 10, 
-      name: 'Black and Gold Confetti', 
-      image: '/360-1.jpg', 
-      category: 'Elegant',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 11, 
-      name: 'Green Boxwood', 
-      image: '/360.jpg', 
-      category: 'Floral',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 12, 
-      name: 'White Flower Wall', 
-      image: '/360-1.jpg', 
-      category: 'Floral',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 13, 
-      name: 'Rose Gold Sequins', 
-      image: '/360.jpg', 
-      category: 'Sequins',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 14, 
-      name: 'Navy Blue Sequins', 
-      image: '/360-1.jpg', 
-      category: 'Sequins',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 15, 
-      name: 'Purple Sequins', 
-      image: '/360.jpg', 
-      category: 'Sequins',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 16, 
-      name: 'Red Sequins', 
-      image: '/360-1.jpg', 
-      category: 'Sequins',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 17, 
-      name: 'Emerald Green Sequins', 
-      image: '/360.jpg', 
-      category: 'Sequins',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 18, 
-      name: 'Blush Pink Floral', 
-      image: '/360-1.jpg', 
-      category: 'Floral',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 19, 
-      name: 'Eucalyptus Greenery', 
-      image: '/360.jpg', 
-      category: 'Floral',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 20, 
-      name: 'Tropical Palm', 
-      image: '/360-1.jpg', 
-      category: 'Floral',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 21, 
-      name: 'Marble White', 
-      image: '/360.jpg', 
-      category: 'Elegant',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 22, 
-      name: 'Marble Black', 
-      image: '/360-1.jpg', 
-      category: 'Elegant',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 23, 
-      name: 'Holographic Silver', 
-      image: '/360.jpg', 
-      category: 'Sequins',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 24, 
-      name: 'Holographic Gold', 
-      image: '/360-1.jpg', 
-      category: 'Sequins',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 25, 
-      name: 'Burgundy Velvet', 
-      image: '/360.jpg', 
-      category: 'Elegant',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 26, 
-      name: 'Royal Blue Velvet', 
-      image: '/360-1.jpg', 
-      category: 'Elegant',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 27, 
-      name: 'Dusty Rose Floral', 
-      image: '/360.jpg', 
-      category: 'Floral',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 28, 
-      name: 'Sage Green Floral', 
-      image: '/360-1.jpg', 
-      category: 'Floral',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 29, 
-      name: 'Copper Sequins', 
-      image: '/360.jpg', 
-      category: 'Sequins',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 30, 
-      name: 'Iridescent White', 
-      image: '/360-1.jpg', 
-      category: 'Sequins',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    },
-    { 
-      id: 31, 
-      name: 'Vintage Lace', 
-      image: '/360.jpg', 
-      category: 'Elegant',
-      gallery: ['/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg']
-    },
-    { 
-      id: 32, 
-      name: 'Geometric Gold', 
-      image: '/360-1.jpg', 
-      category: 'Elegant',
-      gallery: ['/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg']
-    }
+  const galleryImages = [
+      gallery: ['/360.jpg', '/360-1.jpg', '/DSC_1148.JPG', '/main.JPG']
+    { src: '/20250804_210332810.jpg', description: 'Behind the scenes of our professional event service' },
+    { src: '/20250804_210043845.jpg', description: 'Event highlights showcasing memorable guest interactions' },
+    { src: '/20250804_205655968.jpg', description: 'Professional photography capturing special moments at the event' },
+    { src: '/20250804_214331446.jpg', description: 'Behind the scenes of our photobooth experience in action' },
+    { src: '/DSC_0376 2.JPG', description: 'Professional event setup showcasing our premium service quality' },
+    { src: '/20250804_213017940.jpg', description: 'Event highlights capturing memorable moments and guest interactions' }
   ];
 
-  const openBackdropGallery = (backdropIndex: number) => {
-    setSelectedBackdrop(backdropIndex);
-    setSelectedImage(0);
+  const openModal = (index: number) => {
+    setSelectedImage(index);
   };
 
   const closeModal = () => {
     setSelectedImage(null);
-    setSelectedBackdrop(null);
   };
 
   const nextImage = () => {
-    if (selectedBackdrop !== null && selectedImage !== null) {
-      const currentGallery = backdrops[selectedBackdrop].gallery;
-      setSelectedImage((selectedImage + 1) % currentGallery.length);
+    if (selectedImage !== null) {
+      setSelectedImage((selectedImage + 1) % galleryImages.length);
     }
   };
 
   const prevImage = () => {
-    if (selectedBackdrop !== null && selectedImage !== null) {
-      const currentGallery = backdrops[selectedBackdrop].gallery;
-      setSelectedImage((selectedImage - 1 + currentGallery.length) % currentGallery.length);
+    if (selectedImage !== null) {
+      setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
     }
   };
 
@@ -262,50 +39,47 @@ const Backdrops = () => {
       {/* Hero Section */}
       <section className="relative h-96">
         <img
-          src="https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt="Backdrops"
+          src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Gallery Hero"
           className="w-full h-full object-cover"
-          fetchpriority="high"
           loading="eager"
           decoding="sync"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="absolute inset-0 flex items-center justify-center text-center text-white">
           <div className="max-w-4xl px-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">BACKDROPS</h1>
-            <p className="text-xl md:text-2xl">Choose from our stunning collection of professional backdrops</p>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">GALLERY</h1>
+            <p className="text-xl md:text-2xl">
+              Explore our collection of memorable moments and stunning setups
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Backdrops Grid */}
+      {/* Gallery Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          {/* Preload first few backdrop images */}
-          <link rel="preload" as="image" href={backdrops[0].image} fetchpriority="high" />
-          <link rel="preload" as="image" href={backdrops[1].image} fetchpriority="high" />
-          <link rel="preload" as="image" href={backdrops[2].image} fetchpriority="high" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {backdrops.map((backdrop, index) => (
+          {/* Preload first few gallery images */}
+          <link rel="preload" as="image" href={galleryImages[0].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[1].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[2].src} fetchpriority="high" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages.map((image, index) => (
               <div
-                key={backdrop.id}
+                key={index}
                 className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
-                onClick={() => openBackdropGallery(index)}
+                onClick={() => openModal(index)}
               >
                 <div className="relative overflow-hidden rounded-2xl shadow-lg">
                   <img
-                    src={backdrop.image}
-                    alt={backdrop.name}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-                    fetchpriority={index < 8 ? "high" : "auto"}
-                    loading={index < 8 ? "eager" : "lazy"}
-                    decoding={index < 8 ? "sync" : "async"}
+                    src={image.src}
+                    alt={`Gallery ${index + 1}`}
+                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                    fetchpriority={index < 6 ? "high" : "auto"}
+                    loading={index < 6 ? "eager" : "lazy"}
+                    decoding={index < 6 ? "sync" : "async"}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                    <h3 className="text-white font-semibold text-lg">{backdrop.name}</h3>
-                    <p className="text-gray-300 text-sm">{backdrop.category}</p>
-                  </div>
                 </div>
               </div>
             ))}
@@ -314,12 +88,12 @@ const Backdrops = () => {
       </section>
 
       {/* Modal */}
-      {selectedBackdrop !== null && selectedImage !== null && (
+      {selectedImage !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
           <div className="relative max-w-4xl max-h-full">
             <img
-              src={backdrops[selectedBackdrop].gallery[selectedImage]}
-              alt={`${backdrops[selectedBackdrop].name} ${selectedImage + 1}`}
+              src={galleryImages[selectedImage].src}
+              alt={`Gallery ${selectedImage + 1}`}
               className="max-w-full max-h-full object-contain rounded-lg"
             />
             
@@ -345,41 +119,16 @@ const Backdrops = () => {
               <ChevronRight size={24} />
             </button>
 
-            {/* Image Info */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-6 py-3 rounded-full text-center">
-              <h3 className="font-semibold">{backdrops[selectedBackdrop].name}</h3>
-              <p className="text-sm opacity-80">{backdrops[selectedBackdrop].category} • {selectedImage + 1} / {backdrops[selectedBackdrop].gallery.length}</p>
+            {/* Image Description */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-4 rounded-lg max-w-md text-center">
+              <p className="text-sm mb-2">{galleryImages[selectedImage].description}</p>
+              <p className="text-xs opacity-75">{selectedImage + 1} / {galleryImages.length}</p>
             </div>
           </div>
         </div>
       )}
-
-      {/* Easy Process Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8">Easy Process</h2>
-          <p className="text-lg text-gray-600 mb-12 leading-relaxed">
-            Our streamlined booking process makes it simple to select your perfect backdrop and book your photobooth experience. 
-            From consultation to setup, we handle every detail to ensure your event is picture-perfect.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/book-now"
-              className="bg-[#F7E7CE] text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#B5A99A] hover:text-white transition-all duration-300"
-            >
-              BOOK NOW
-            </Link>
-            <a
-              href="mailto:info@projectpartyproductions.com"
-              className="bg-transparent border-2 border-[#B5A99A] text-[#B5A99A] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#B5A99A] hover:text-white transition-all duration-300"
-            >
-              CONTACT US
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
 
-export default Backdrops;
+export default Gallery;

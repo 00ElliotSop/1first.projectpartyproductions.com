@@ -1,42 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+    { src: '/20250804_192508408.jpg', description: 'Prom night setup with glamorous backdrop and elegant lighting' },
+    { src: '/DSC_0161.JPG', description: 'Family reunion with multi-generational fun and classic props' }
+import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const Speakers = () => {
-  const [selectedImage, setSelectedImage] = React.useState<number | null>(null);
+const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
-    '/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg', '/360.jpg', '/360-1.jpg'
-  ];
-
-  const openModal = (index: number) => {
-    setSelectedImage(index);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
-
-  const nextImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage + 1) % galleryImages.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
-    }
-  };
-
-  return (
     <div className="pt-24">
       {/* Hero Section */}
       <section className="relative h-96">
-        <link rel="preload" as="image" href="/360.jpg" />
         <img
-          src="/360.jpg"
-          alt="Professional Speakers"
+          src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Gallery Hero"
           className="w-full h-full object-cover"
           loading="eager"
           decoding="sync"
@@ -44,161 +20,74 @@ const Speakers = () => {
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="absolute inset-0 flex items-center justify-center text-center text-white">
           <div className="max-w-4xl px-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">SPEAKERS</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">GALLERY</h1>
             <p className="text-xl md:text-2xl">
-              Professional sound systems for crystal clear audio at your event
+              Explore our collection of memorable moments and stunning setups
             </p>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Gallery Grid */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8">Professional Audio Solutions</h2>
-          <p className="text-lg text-gray-600 mb-12 leading-relaxed">
-            Our professional speaker systems deliver exceptional sound quality for events of all sizes. 
-            From intimate gatherings to large celebrations, we have the right audio equipment to ensure 
-            your music, announcements, and entertainment sound perfect.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-gray-800">Features Include:</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>High-quality wireless speakers</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>Bluetooth connectivity</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>Multiple input options</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>Professional setup and testing</span>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-gray-800">Perfect For:</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>Wedding ceremonies and receptions</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>Corporate presentations</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>Birthday parties and celebrations</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#F7E7CE] rounded-full"></div>
-                  <span>Outdoor events and festivals</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Our Speaker Systems</h2>
+          {/* Preload first few gallery images */}
+          <link rel="preload" as="image" href={galleryImages[0].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[1].src} fetchpriority="high" />
+          <link rel="preload" as="image" href={galleryImages[2].src} fetchpriority="high" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {galleryImages.map((image, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
                 onClick={() => openModal(index)}
               >
-                <img
-                  src={image}
-                  alt={`Speaker System ${index + 1}`}
-                  className="w-full h-64 object-cover rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-110"
-                 loading="eager"
-                 decoding="sync"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-2xl" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Modal */}
-      {selectedImage !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-full">
-            <img
-              src={galleryImages[selectedImage]}
-              alt={`Speaker System ${selectedImage + 1}`}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-            
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-3 rounded-full transition-all border-2 border-white shadow-lg"
-            >
-              <X size={28} />
+                <div className="relative overflow-hidden rounded-2xl shadow-lg">
+                  <img
+                    src={image.src}
+                    alt={`Gallery ${index + 1}`}
+                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+    { src: '/20250804_204800341.jpg', description: '360 Photobooth in action at a wedding reception with guests enjoying the experience' },
+                    fetchpriority={index < 6 ? "high" : "auto"}
+    { src: '/20250804_204445724.jpg', description: 'Mobile photobooth setup with professional lighting and backdrop at corporate event' },
             </button>
-
-            {/* Navigation Buttons */}
+    { src: '/main.JPG', description: 'Birthday party celebration with colorful props and happy guests' },
             <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
+    { src: '/20250804_1829240671-ezgif.com-speed.gif', description: 'Elegant wedding setup with white flower wall backdrop and professional lighting' },
               onClick={nextImage}
+    { src: '/DSC_0125.JPG', description: 'Corporate gala event featuring our premium photobooth package' },
               className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all"
+    { src: '/DSC_0381 2.JPG', description: 'Outdoor wedding ceremony with portable power station and wireless setup' },
             >
+    { src: '/DSC_1148.JPG', description: 'Anniversary celebration with gold sequin backdrop and romantic lighting' },
               <ChevronRight size={24} />
+    { src: '/360.jpg', description: 'Graduation party with fun props and instant photo printing' },
             </button>
+    { src: '/360-1.jpg', description: 'Holiday party setup with seasonal decorations and themed props' },
 
-            {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full">
-              {selectedImage + 1} / {galleryImages.length}
+    { src: '/20250804_182858278 (2).jpg', description: 'Baby shower event with pastel backdrop and delicate lighting' },
+            {/* Image Description */}
+    { src: '/20250804_192508408.jpg', description: 'Corporate team building event with interactive photobooth experience' },
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-4 rounded-lg max-w-md text-center">
+    { src: '/DSC_0161.JPG', description: 'Sweet 16 party with vibrant lighting and trendy backdrop' },
+              <p className="text-sm mb-2">{galleryImages[selectedImage].description}</p>
+    { src: '/DSC_0376 2.JPG', description: 'Wedding reception with red carpet entrance and stanchions' },
+              <p className="text-xs opacity-75">{selectedImage + 1} / {galleryImages.length}</p>
+    { src: '/main.JPG', description: 'Charity gala featuring our premium lighting package' },
             </div>
+    { src: '/20250804_204800341.jpg', description: 'Engagement party with romantic floral backdrop and soft lighting' },
           </div>
+    { src: '/20250804_204445724.jpg', description: 'Corporate product launch with branded backdrop and professional setup' },
         </div>
+    { src: '/DSC_0125.JPG', description: 'Quinceañera celebration with elegant gold and pink theme' },
       )}
-
-      {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8">Ready to Book Our Speakers?</h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Contact us today to add professional audio to your event package.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/book-now"
-              className="bg-[#F7E7CE] text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#B5A99A] hover:text-white transition-all duration-300"
-            >
-              BOOK NOW
-            </Link>
-            <a
-              href="mailto:info@projectpartyproductions.com"
-              className="bg-transparent border-2 border-[#B5A99A] text-[#B5A99A] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#B5A99A] hover:text-white transition-all duration-300"
-            >
-              CONTACT US
-            </a>
-          </div>
-        </div>
-      </section>
+    { src: '/DSC_0381 2.JPG', description: 'Retirement party with classic backdrop and timeless props' },
     </div>
+    { src: '/DSC_1148.JPG', description: 'New Year\'s Eve party with glittery backdrop and festive props' },
   );
+    { src: '/360.jpg', description: 'Bridal shower with white and gold theme and delicate flowers' },
 };
+    { src: '/360-1.jpg', description: 'Bar Mitzvah celebration with traditional and modern elements' },
 
-export default Speakers;
+    { src: '/20250804_182858278 (2).jpg', description: 'Company anniversary event with professional branding and setup' },
+export default Gallery;
