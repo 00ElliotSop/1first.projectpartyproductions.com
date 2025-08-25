@@ -66,9 +66,8 @@ const Gallery = () => {
     <div className="pt-24">
       {/* Hero Section */}
       <section className="relative h-96">
-        <link rel="preload" as="image" href="/20250804_192508408.jpg" />
         <img
-          src="/20250804_192508408.jpg"
+          src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt="Gallery Hero"
           className="w-full h-full object-cover"
           loading="eager"

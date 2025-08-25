@@ -78,14 +78,9 @@ const Header = () => {
         <div className="max-w-7xl mx-auto flex justify-between items-center px-2">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img 
-              src="/full-logo-black.png" 
-              alt="Project Party Productions" 
-              className="h-12 sm:h-16 md:h-[67px] w-auto rounded-full"
-              fetchpriority="high"
-              loading="eager"
-              decoding="sync"
-            />
+            <div className="bg-[#B5A99A] text-white px-4 py-2 rounded-full">
+              <span className="font-bold text-lg">PPP</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

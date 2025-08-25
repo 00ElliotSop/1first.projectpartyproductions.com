@@ -7,10 +7,10 @@ const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const heroImages = [
-    '/DSC_0376 2.JPG',
-    '/20250804_204800341.jpg',
-    '/main.JPG',
-    '/20250804_204445724.jpg'
+    'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
   ];
 
   const testimonials = [
@@ -78,32 +78,32 @@ const Home = () => {
 
   const whyChooseUsFeatures = [
     {
-      image: '/360.jpg',
+      image: 'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
       title: 'Project Party Productions brings a professional studio ambience to your event, all of our equipment is fully mobile, no need to connect to any outlets!',
       description: 'Professional lighting and high-quality equipment for stunning photos.'
     },
     {
-      image: '/20250804_192508408.jpg',
+      image: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
       title: 'High-Definition Images: Our photo booths deliver high-definition images, ensuring every smile and detail is captured in stunning clarity.',
       description: 'Crystal clear photos that capture every moment perfectly.'
     },
     {
-      image: '/DSC_0160.JPG',
+      image: 'https://images.pexels.com/photos/1164473/pexels-photo-1164473.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
       title: 'We offer a variety of backdrops to suit any taste, ensuring your photos are unique and memorable. (32+ Backdrops and also custom backdrops available)',
       description: 'Choose from our extensive collection of beautiful backdrops.'
     },
     {
-      image: '/DSC_1148.JPG',
+      image: 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
       title: 'Our modern, fun props will create hilarious photo opportunities and keep your guests entertained. (We offer props for different events, seasons, holidays, and custom props)',
       description: 'Extensive prop collection to make your photos fun and memorable.'
     },
     {
-      image: '/DSC_0381 2.JPG',
+      image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
       title: 'We are fully insured and incorporated and have a $2 million dollar insurance liability.',
       description: 'Complete peace of mind with full professional insurance coverage.'
     },
     {
-      image: '/DSC_0125.JPG',
+      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
       title: 'We will always have a minimum of 2 professional attendants. We provide excellent customer service and having a first-class experience is our top priority.',
       description: 'Dedicated support team ensuring your event runs smoothly.'
     }
@@ -145,12 +145,6 @@ const Home = () => {
     <div className="pt-24">
       {/* Hero Section with Carousel */}
       <section className="relative h-screen overflow-hidden">
-        {/* Preload critical images */}
-        <link rel="preload" as="image" href={heroImages[0]} fetchpriority="high" />
-        <link rel="preload" as="image" href={heroImages[1]} fetchpriority="high" />
-        <link rel="preload" as="image" href={heroImages[2]} fetchpriority="high" />
-        <link rel="preload" as="image" href={heroImages[3]} fetchpriority="high" />
-        <link rel="preload" as="image" href="/20250804_1829240671-ezgif.com-speed.gif" fetchpriority="high" />
         <div className="relative w-full h-full">
           {heroImages.map((image, index) => (
             <div
@@ -231,7 +225,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <img
-                src="/20250804_1829240671-ezgif.com-speed.gif"
+                src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt="Meet the Team"
                 className="w-full rounded-2xl shadow-lg"
                 loading="eager"
