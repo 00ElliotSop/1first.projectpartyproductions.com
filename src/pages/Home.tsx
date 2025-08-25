@@ -79,7 +79,7 @@ const Home = () => {
   const whyChooseUsFeatures = [
     {
       image: '/360.jpg',
-      title: 'We bring a professional studio ambience to every event',
+      title: 'Project Party Productions brings a professional studio ambience to your event, all of our equipment is fully mobile, no need to connect to any outlets!',
       description: 'Professional lighting and high-quality equipment for stunning photos.'
     },
     {
@@ -89,22 +89,22 @@ const Home = () => {
     },
     {
       image: '/DSC_0160.JPG',
-      title: 'We offer a variety of backdrops to suit any taste, ensuring your photos are unique and memorable.',
+      title: 'We offer a variety of backdrops to suit any taste, ensuring your photos are unique and memorable. (32+ Backdrops and also custom backdrops available)',
       description: 'Choose from our extensive collection of beautiful backdrops.'
     },
     {
       image: '/DSC_1148.JPG',
-      title: 'Our modern, fun props will create hilarious photo opportunities and keep your guests entertained.',
+      title: 'Our modern, fun props will create hilarious photo opportunities and keep your guests entertained. (We offer props for different events, seasons, holidays, and custom props)',
       description: 'Extensive prop collection to make your photos fun and memorable.'
     },
     {
       image: '/DSC_0381 2.JPG',
-      title: 'We create a seamless and easy booking process.',
-      description: 'Simple booking process from start to finish.'
+      title: 'We are fully insured and incorporated and have a $2 million dollar insurance liability.',
+      description: 'Complete peace of mind with full professional insurance coverage.'
     },
     {
       image: '/DSC_0125.JPG',
-      title: 'Excellent customer service and a first-class experience is our top priority.',
+      title: 'We will always have a minimum of 2 professional attendants. We provide excellent customer service and having a first-class experience is our top priority.',
       description: 'Dedicated support team ensuring your event runs smoothly.'
     }
   ];
