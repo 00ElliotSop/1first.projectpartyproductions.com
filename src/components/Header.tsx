@@ -55,7 +55,7 @@ const Header = () => {
           <div className="flex flex-col sm:flex-row items-end sm:items-center space-y-1 sm:space-y-0 sm:space-x-6">
             <div className="flex items-center space-x-2">
               <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>416-616-1121</span>
+              <span>647-957-2057</span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -102,8 +102,9 @@ const Header = () => {
               <button
                 onClick={() => toggleDropdown('photobooth')}
                 className="flex items-center space-x-1 text-gray-700 hover:text-[#F7E7CE] transition-colors font-medium"
+                style={{ fontSize: 'clamp(0.75rem, 1.2vw, 1rem)' }}
               >
-                <span>PHOTOBOOTH</span>
+                <span>PHOTOBOOTHS</span>
                 <ChevronDown size={16} />
               </button>
               {activeDropdown === 'photobooth' && (
@@ -185,7 +186,7 @@ const Header = () => {
 
             <Link
               to="/book-now"
-              className="bg-[#F7E7CE] text-white px-6 py-2 rounded-full hover:bg-[#B5A99A] transition-colors font-medium"
+              className="bg-[#F7E7CE] text-black px-6 py-2 rounded-full hover:bg-[#B5A99A] hover:text-white transition-colors font-medium"
             >
               BOOK NOW
             </Link>
@@ -210,12 +211,36 @@ const Header = () => {
               <Link to="/backdrops" className="text-gray-700 hover:text-[#F7E7CE] transition-colors font-medium">
                 BACKDROPS
               </Link>
-              <Link to="/360-photobooth" className="text-gray-700 hover:text-[#F7E7CE] transition-colors font-medium">
-                360 PHOTOBOOTH
-              </Link>
-              <Link to="/mobile-photobooth" className="text-gray-700 hover:text-[#F7E7CE] transition-colors font-medium">
-                MOBILE PHOTOBOOTH
-              </Link>
+              
+              {/* Photobooths Dropdown - Mobile */}
+              <div className="relative">
+                <button
+                  onClick={() => toggleDropdown('photobooth')}
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-[#F7E7CE] transition-colors font-medium"
+                >
+                  <span>PHOTOBOOTHS</span>
+                  <ChevronDown size={16} />
+                </button>
+                {activeDropdown === 'photobooth' && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    <Link
+                      to="/360-photobooth"
+                      className="block text-gray-600 hover:text-[#F7E7CE] transition-colors"
+                      onClick={() => setActiveDropdown(null)}
+                    >
+                      360 Photobooth
+                    </Link>
+                    <Link
+                      to="/mobile-photobooth"
+                      className="block text-gray-600 hover:text-[#F7E7CE] transition-colors"
+                      onClick={() => setActiveDropdown(null)}
+                    >
+                      Mobile Photobooth
+                    </Link>
+                  </div>
+                )}
+              </div>
+              
               <Link to="/faq" className="text-gray-700 hover:text-[#F7E7CE] transition-colors font-medium">
                 FAQ
               </Link>
@@ -275,7 +300,7 @@ const Header = () => {
               
               <Link
                 to="/book-now"
-                className="bg-[#F7E7CE] text-white px-6 py-2 rounded-full hover:bg-[#B5A99A] transition-colors font-medium text-center"
+                className="bg-[#F7E7CE] text-black px-6 py-2 rounded-full hover:bg-[#B5A99A] hover:text-white transition-colors font-medium text-center"
               >
                 BOOK NOW
               </Link>

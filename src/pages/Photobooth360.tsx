@@ -52,7 +52,7 @@ const Photobooth360 = () => {
             </p>
             <Link
               to="/book-now"
-              className="bg-[#F7E7CE] text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#B5A99A] hover:text-white transition-all duration-300 inline-block"
+              className="bg-[#F7E7CE] text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#B5A99A] hover:text-white transition-all duration-300 inline-block"
             >
               BOOK NOW
             </Link>
