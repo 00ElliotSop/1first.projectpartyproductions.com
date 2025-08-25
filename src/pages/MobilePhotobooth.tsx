@@ -7,35 +7,6 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
-    <div className="pt-24">
-      {/* Hero Section */}
-      <section className="relative h-96">
-        <img
-          src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt="Gallery Hero"
-          className="w-full h-full object-cover"
-          loading="eager"
-          decoding="sync"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
-        <div className="absolute inset-0 flex items-center justify-center text-center text-white">
-          <div className="max-w-4xl px-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">GALLERY</h1>
-            <p className="text-xl md:text-2xl">
-              Explore our collection of memorable moments and stunning setups
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Grid */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Preload first few gallery images */}
-          <link rel="preload" as="image" href={galleryImages[0].src} fetchpriority="high" />
-          <link rel="preload" as="image" href={galleryImages[1].src} fetchpriority="high" />
-          <link rel="preload" as="image" href={galleryImages[2].src} fetchpriority="high" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {galleryImages.map((image, index) => (
               <div
                 key={index}

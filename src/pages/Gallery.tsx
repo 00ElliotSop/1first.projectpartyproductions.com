@@ -7,35 +7,6 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
-    { src: '/20250804_210332810.jpg', description: 'Behind the scenes of our professional event service' },
-    { src: '/20250804_210043845.jpg', description: 'Event highlights showcasing memorable guest interactions' },
-    { src: '/20250804_205655968.jpg', description: 'Professional photography capturing special moments at the event' },
-    { src: '/20250804_214331446.jpg', description: 'Behind the scenes of our photobooth experience in action' },
-    { src: '/DSC_0376 2.JPG', description: 'Professional event setup showcasing our premium service quality' },
-    { src: '/20250804_213017940.jpg', description: 'Event highlights capturing memorable moments and guest interactions' }
-  ];
-
-  const openModal = (index: number) => {
-    setSelectedImage(index);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
-
-  const nextImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage + 1) % galleryImages.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
-    }
-  };
-
-  return (
     <div className="pt-24">
       {/* Hero Section */}
       <section className="relative h-96">
